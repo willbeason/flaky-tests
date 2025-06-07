@@ -1,13 +1,13 @@
 'use client';
 
-import { IconChevronDown } from '@tabler/icons-react';
-import { Burger, Center, Container, Group, Menu } from '@mantine/core';
+import Link from 'next/link';
+import { Anchor, Burger, Container, Group, Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '@/components/HeaderMenu/HeaderMenu.module.css';
 
-const links: { link: string; label: string; links: { link: string; label: string }[] }[] = [
-  { link: '/foo', label: 'Foo', links: [] },
+const links: { link: string; label: string; links?: { link: string; label: string }[] }[] = [
+  { link: '/foo', label: 'Foo' },
 ];
 
 export default function HeaderMenu() {
@@ -22,16 +22,9 @@ export default function HeaderMenu() {
       return (
         <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
           <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size={14} stroke={1.5} />
-              </Center>
-            </a>
+            <Anchor component={Link} href={link.link} className={classes.link}>
+              {link.label}
+            </Anchor>
           </Menu.Target>
           <Menu.Dropdown>{menuItems}</Menu.Dropdown>
         </Menu>
