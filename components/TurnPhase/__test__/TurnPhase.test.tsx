@@ -15,7 +15,7 @@ describe('TurnPhase', () => {
   });
 
   describe('highlights the current turn phase', () => {
-    Object.entries(TurnPhasesOrder).forEach(([_, phase]) => {
+    TurnPhasesOrder.forEach((phase) => {
       it(`when in phase ${phase}`, () => {
         render(<TurnPhase phase={phase} />);
 
@@ -31,7 +31,7 @@ describe('TurnPhase', () => {
       it(`when in phase ${current_phase}`, () => {
         render(<TurnPhase phase={current_phase} />);
 
-        Object.entries(TurnPhasesOrder).forEach(([_, phase]) => {
+        TurnPhasesOrder.forEach((phase) => {
           if (phase === current_phase) {
             return;
           }
