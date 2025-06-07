@@ -1,5 +1,6 @@
 import '@mantine/core/styles.css';
 
+import React from 'react';
 import { mantineHtmlProps, MantineProvider } from '@mantine/core';
 import HeaderMenu from '@/components/HeaderMenu/HeaderMenu';
 import { theme } from '@/theme';
