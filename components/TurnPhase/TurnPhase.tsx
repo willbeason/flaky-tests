@@ -15,15 +15,8 @@ export default function TurnPhase({
   phase: (typeof TurnPhases)[keyof typeof TurnPhases];
 }) {
   const turnPhases = TurnPhasesOrder.map((p) => {
-    if (phase === p) {
-      return (
-        <div key={p} className={classes.active}>
-          {p}
-        </div>
-      );
-    }
     return (
-      <div key={p} className={classes.inactive}>
+      <div key={p} className={phase === p ? classes.active : classes.inactive}>
         {p}
       </div>
     );
