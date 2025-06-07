@@ -26,7 +26,7 @@ describe('TurnPhase', () => {
     });
   });
 
-  describe('does not highlight inactive phases', () => {
+  describe('does not highlight other phases', () => {
     Object.entries(TurnPhases).forEach(([_, current_phase]) => {
       it(`when in phase ${current_phase}`, () => {
         render(<TurnPhase phase={current_phase} />);
