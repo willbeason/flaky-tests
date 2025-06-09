@@ -19,20 +19,26 @@ describe('TurnPhase', () => {
     [TurnPhases.NONE, TurnPhases.GUESS, 'inactive'],
     [TurnPhases.NONE, TurnPhases.TEST, 'inactive'],
     [TurnPhases.NONE, TurnPhases.DEDUCE, 'inactive'],
+
     [TurnPhases.GUESS, TurnPhases.GUESS, 'active'],
     [TurnPhases.GUESS, TurnPhases.TEST, 'inactive'],
     [TurnPhases.GUESS, TurnPhases.DEDUCE, 'inactive'],
+
     [TurnPhases.TEST, TurnPhases.GUESS, 'inactive'],
     [TurnPhases.TEST, TurnPhases.TEST, 'active'],
     [TurnPhases.TEST, TurnPhases.DEDUCE, 'inactive'],
+
     [TurnPhases.DEDUCE, TurnPhases.GUESS, 'inactive'],
     [TurnPhases.DEDUCE, TurnPhases.TEST, 'inactive'],
     [TurnPhases.DEDUCE, TurnPhases.DEDUCE, 'active'],
-  ]).it("during the '%s' phase lists the '%s' phase as '%s'", (currentPhase: PhaseType, phase: PhaseType, expected: string) => {
-    render(<TurnPhase phase={currentPhase} />);
+  ]).it(
+    "during the '%s' phase lists the '%s' phase as '%s'",
+    (currentPhase: PhaseType, phase: PhaseType, expected: string) => {
+      render(<TurnPhase phase={currentPhase} />);
 
-    const phaseText = screen.getByText(phase);
+      const phaseText = screen.getByText(phase);
 
-    expect(phaseText).toHaveClass(expected);
-  });
+      expect(phaseText).toHaveClass(expected);
+    }
+  );
 });

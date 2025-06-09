@@ -1,7 +1,5 @@
-'use client';
-
-import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@mantine/core';
+import { updateGame } from '@/remote/client';
 import { PhaseType, TurnPhases } from '../TurnPhase/TurnPhase';
 
 function advanceMessage(phase: PhaseType): string {
@@ -34,14 +32,16 @@ export default function AdvancePhase({
   setPhaseAction,
 }: {
   phase: PhaseType;
-  setPhaseAction: Dispatch<SetStateAction<PhaseType>>;
+  setPhaseAction: (phase: PhaseType) => void;
 }) {
+  const handlePhaseChange = async (phase: PhaseType) => {
+    const nextPhase = nextPhase(phase);
+    setPhaseAction(nextPhase);
+    await updateGame();
+  };
   return (
     <>
-      <Button
-        title="advance-phase-button"
-        onClick={() => setPhaseAction((phase) => nextPhase(phase))}
-      >
+      <Button title="advance-phase-button" onClick={() => setPhaseAction(nextPhase(phase))}>
         {advanceMessage(phase)}
       </Button>
     </>

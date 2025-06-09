@@ -1,7 +1,5 @@
-'use client';
-
-import { Button } from '@mantine/core';
 import { Dispatch, SetStateAction } from 'react';
+import { Button } from '@mantine/core';
 
 export const GuessValue = 0 | 1 | 2 | 3;
 
@@ -14,6 +12,8 @@ export type Guess = {
   lowerRight: GuessValueType;
 };
 
+// keyof Guess -> allows using key as value
+
 function nextGuess(guessValue: GuessValueType): GuessValueType {
   return (guessValue + 1) % 4;
 }
@@ -25,33 +25,33 @@ export default function GuessDisplay({
   guess: Guess;
   setGuessAction: Dispatch<SetStateAction<Guess>>;
 }) {
-  function incrementUpperLeft(guess: Guess): Guess {
+  const incrementUpperLeft = (guess: Guess): Guess => {
     return {
       ...guess,
-      upperLeft: nextGuess(guess.upperLeft)
-    }
-  }
+      upperLeft: nextGuess(guess.upperLeft),
+    };
+  };
 
-  function incrementUpperRight(guess: Guess) {
+  const incrementUpperRight = (guess: Guess) => {
     return {
       ...guess,
-      upperRight: nextGuess(guess.upperRight)
-    }
-  }
+      upperRight: nextGuess(guess.upperRight),
+    };
+  };
 
-  function incrementLowerLeft(guess: Guess) {
+  const incrementLowerLeft = (guess: Guess) => {
     return {
       ...guess,
-      lowerLeft: nextGuess(guess.lowerLeft)
-    }
-  }
+      lowerLeft: nextGuess(guess.lowerLeft),
+    };
+  };
 
-  function incrementLowerRight(guess: Guess) {
+  const incrementLowerRight = (guess: Guess) => {
     return {
       ...guess,
-      lowerRight: nextGuess(guess.lowerRight)
-    }
-  }
+      lowerRight: nextGuess(guess.lowerRight),
+    };
+  };
 
   return (
     <>
