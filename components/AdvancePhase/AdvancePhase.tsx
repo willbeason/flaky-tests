@@ -37,7 +37,7 @@ export default function AdvancePhase({
 }) {
   return (
     <>
-      <Button onClick={() => setPhaseAction(nextPhase(phase))}>{advanceMessage(phase)}</Button>
+      <Button title="advance-phase-button" onClick={() => setPhaseAction(nextPhase(phase))}>{advanceMessage(phase)}</Button>
     </>
   );
 }
