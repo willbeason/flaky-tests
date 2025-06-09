@@ -1,16 +1,31 @@
 'use server';
 
+import { Guess } from '@/components/Guess/Guess';
+import { PhaseType, TurnPhases } from '@/components/TurnPhase/TurnPhase';
+
 export type Game = {
-  id: string;
-  name: string;
+  phase: PhaseType;
+  guess: Guess;
+};
+
+let _game: Game = {
+  phase: TurnPhases.NONE,
+  guess: {
+    upperLeft: 0,
+    upperRight: 0,
+    lowerLeft: 0,
+    lowerRight: 0,
+  },
 };
 
 export async function getGame(): Promise<Game> {
   // fetch
-  return {
-    id: '1',
-    name: 'Game 1',
-  };
+  return _game;
+}
+
+export async function updateGame(game: Game): Promise<boolean> {
+  _game = game;
+  return true;
 }
 
 export async function getFoo(): Promise<string> {
