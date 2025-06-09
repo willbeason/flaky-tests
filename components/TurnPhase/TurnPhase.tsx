@@ -14,8 +14,6 @@ export type PhaseType = (typeof TurnPhases)[keyof typeof TurnPhases];
 export const TurnPhasesOrder = [TurnPhases.GUESS, TurnPhases.TEST, TurnPhases.DEDUCE] as const;
 
 export default function TurnPhase({ phase }: { phase: PhaseType }) {
-  // const [phase, _] = useState<PhaseType>(TurnPhases.NONE);
-
   const turnPhases = TurnPhasesOrder.map((p) => {
     return (
       <div key={p} className={phase === p ? classes.active : classes.inactive}>

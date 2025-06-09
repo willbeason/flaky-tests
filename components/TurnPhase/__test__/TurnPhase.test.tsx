@@ -1,5 +1,5 @@
 import each from 'jest-each';
-import TurnPhase, { PhaseType, TurnPhases, TurnPhasesOrder } from '@/components/TurnPhase/TurnPhase';
+import TurnPhase, { PhaseType, TurnPhases } from '@/components/TurnPhase/TurnPhase';
 import { render, screen } from '@/test-utils';
 
 describe('TurnPhase', () => {

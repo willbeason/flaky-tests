@@ -1,5 +1,6 @@
 'use client';
 
+import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@mantine/core';
 import { PhaseType, TurnPhases } from '../TurnPhase/TurnPhase';
 
@@ -33,11 +34,16 @@ export default function AdvancePhase({
   setPhaseAction,
 }: {
   phase: PhaseType;
-  setPhaseAction: (phase: PhaseType) => void;
+  setPhaseAction: Dispatch<SetStateAction<PhaseType>>;
 }) {
   return (
     <>
-      <Button title="advance-phase-button" onClick={() => setPhaseAction(nextPhase(phase))}>{advanceMessage(phase)}</Button>
+      <Button
+        title="advance-phase-button"
+        onClick={() => setPhaseAction((phase) => nextPhase(phase))}
+      >
+        {advanceMessage(phase)}
+      </Button>
     </>
   );
 }
