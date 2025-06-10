@@ -20,51 +20,29 @@ function nextGuess(guessValue: GuessValueType): GuessValueType {
 
 export default function GuessDisplay({
   guess,
-  setGuessAction,
+  handleSetGuess,
 }: {
   guess: Guess;
-  setGuessAction: Dispatch<SetStateAction<Guess>>;
+  handleSetGuess: (guess: Guess) => void;
 }) {
-  const incrementUpperLeft = (guess: Guess): Guess => {
-    return {
+  const incrementGuessCell = (guess: Guess, cell: keyof Guess) =>
+    handleSetGuess({
       ...guess,
-      upperLeft: nextGuess(guess.upperLeft),
-    };
-  };
-
-  const incrementUpperRight = (guess: Guess) => {
-    return {
-      ...guess,
-      upperRight: nextGuess(guess.upperRight),
-    };
-  };
-
-  const incrementLowerLeft = (guess: Guess) => {
-    return {
-      ...guess,
-      lowerLeft: nextGuess(guess.lowerLeft),
-    };
-  };
-
-  const incrementLowerRight = (guess: Guess) => {
-    return {
-      ...guess,
-      lowerRight: nextGuess(guess.lowerRight),
-    };
-  };
+      [cell]: nextGuess(guess[cell]),
+    });
 
   return (
     <>
       <p>
         <Button
           title="increment-upper-left-button"
-          onClick={() => setGuessAction((guess: Guess) => incrementUpperLeft(guess))}
+          onClick={() => incrementGuessCell(guess, 'upperLeft')}
         >
           {guess.upperLeft}
         </Button>
         <Button
           title="increment-upper-right-button"
-          onClick={() => setGuessAction((guess: Guess) => incrementUpperRight(guess))}
+          onClick={() => incrementGuessCell(guess, 'upperRight')}
         >
           {guess.upperRight}
         </Button>
@@ -72,13 +50,13 @@ export default function GuessDisplay({
       <p>
         <Button
           title="increment-lower-left-button"
-          onClick={() => setGuessAction((guess: Guess) => incrementLowerLeft(guess))}
+          onClick={() => incrementGuessCell(guess, 'lowerLeft')}
         >
           {guess.lowerLeft}
         </Button>
         <Button
           title="increment-lower-right-button"
-          onClick={() => setGuessAction((guess: Guess) => incrementLowerRight(guess))}
+          onClick={() => incrementGuessCell(guess, 'lowerRight')}
         >
           {guess.lowerRight}
         </Button>
