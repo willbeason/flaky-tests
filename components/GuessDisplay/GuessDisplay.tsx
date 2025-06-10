@@ -15,11 +15,27 @@ function nextGuess(guessValue: GuessValueType): GuessValueType {
   return (guessValue + 1) % 4;
 }
 
-function GuessDisplayButton({ guessValue, key }: { guessValue: GuessValueType; key: keyof Guess }) {
+function GuessDisplayButton({
+  guess,
+  guessKey,
+  handleSetGuess,
+}: {
+  guess: Guess;
+  guessKey: keyof Guess;
+  handleSetGuess: (guess: Guess) => void;
+}) {
+  const incrementGuessCell = (guess: Guess) =>
+    handleSetGuess({
+      ...guess,
+      [guessKey]: nextGuess(guess[guessKey]),
+    });
+
+  const buttonTitle = `increment-guess-${guessKey}-button`;
+
   return (
     <>
-      <Button title="increment-guess-{key}-button" key={key}>
-        {guessValue}
+      <Button title={buttonTitle} onClick={() => incrementGuessCell(guess)}>
+        {guess[guessKey]}
       </Button>
     </>
   );
@@ -32,41 +48,15 @@ export default function GuessDisplay({
   guess: Guess;
   handleSetGuess: (guess: Guess) => void;
 }) {
-  const incrementGuessCell = (guess: Guess, cell: keyof Guess) =>
-    handleSetGuess({
-      ...guess,
-      [cell]: nextGuess(guess[cell]),
-    });
-
   return (
     <>
       <p>
-        <Button
-          title="increment-upper-left-button"
-          onClick={() => incrementGuessCell(guess, 'upperLeft')}
-        >
-          {guess.upperLeft}
-        </Button>
-        <Button
-          title="increment-upper-right-button"
-          onClick={() => incrementGuessCell(guess, 'upperRight')}
-        >
-          {guess.upperRight}
-        </Button>
+        <GuessDisplayButton guess={guess} guessKey="upperLeft" handleSetGuess={handleSetGuess} />
+        <GuessDisplayButton guess={guess} guessKey="upperRight" handleSetGuess={handleSetGuess} />
       </p>
       <p>
-        <Button
-          title="increment-lower-left-button"
-          onClick={() => incrementGuessCell(guess, 'lowerLeft')}
-        >
-          {guess.lowerLeft}
-        </Button>
-        <Button
-          title="increment-lower-right-button"
-          onClick={() => incrementGuessCell(guess, 'lowerRight')}
-        >
-          {guess.lowerRight}
-        </Button>
+        <GuessDisplayButton guess={guess} guessKey="lowerLeft" handleSetGuess={handleSetGuess} />
+        <GuessDisplayButton guess={guess} guessKey="lowerRight" handleSetGuess={handleSetGuess} />
       </p>
     </>
   );
