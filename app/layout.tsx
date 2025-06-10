@@ -6,8 +6,8 @@ import HeaderMenu from '@/components/HeaderMenu/HeaderMenu';
 import { theme } from '@/theme';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'FlakyTests',
+  description: 'A competitive logic puzzle game',
 };
 
 export default function RootLayout({ children }: { children: any }) {

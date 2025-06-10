@@ -1,8 +1,18 @@
 import { Button } from '@mantine/core';
 
-export const GuessValue = 0 | 1 | 2 | 3;
+export const GuessValue = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+};
 
-export type GuessValueType = typeof GuessValue;
+export type GuessValueType = (typeof GuessValue)[keyof typeof GuessValue];
+
+function nextGuess(guessValue: GuessValueType): GuessValueType {
+  const NEXT_GUESS = [1, 2, 3, 0] as const;
+  return NEXT_GUESS[guessValue];
+}
 
 export type Guess = {
   upperLeft: GuessValueType;
@@ -11,11 +21,7 @@ export type Guess = {
   lowerRight: GuessValueType;
 };
 
-function nextGuess(guessValue: GuessValueType): GuessValueType {
-  return (guessValue + 1) % 4;
-}
-
-function GuessDisplayButton({
+export function GuessDisplayButton({
   guess,
   guessKey,
   handleSetGuess,

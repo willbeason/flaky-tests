@@ -1,4 +1,4 @@
-import GameBoard from '@/components/GameBoard';
+import GameBoard from '@/components/GameBoard/GameBoard';
 import { getGame } from '@/remote/client';
 
 export default async function HomePage() {
