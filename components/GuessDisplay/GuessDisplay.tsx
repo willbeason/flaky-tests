@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@mantine/core';
 
 export const GuessValue = 0 | 1 | 2 | 3;
@@ -12,10 +11,18 @@ export type Guess = {
   lowerRight: GuessValueType;
 };
 
-// keyof Guess -> allows using key as value
-
 function nextGuess(guessValue: GuessValueType): GuessValueType {
   return (guessValue + 1) % 4;
+}
+
+function GuessDisplayButton({ guessValue, key }: { guessValue: GuessValueType; key: keyof Guess }) {
+  return (
+    <>
+      <Button title="increment-guess-{key}-button" key={key}>
+        {guessValue}
+      </Button>
+    </>
+  );
 }
 
 export default function GuessDisplay({

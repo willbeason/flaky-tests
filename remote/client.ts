@@ -1,6 +1,6 @@
 'use server';
 
-import { Guess } from '@/components/Guess/Guess';
+import { Guess } from '@/components/GuessDisplay/GuessDisplay';
 import { PhaseType, TurnPhases } from '@/components/TurnPhase/TurnPhase';
 
 export type Game = {

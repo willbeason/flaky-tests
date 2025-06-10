@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import AdvancePhase from '@/components/AdvancePhase/AdvancePhase';
-import GuessDisplay, { Guess } from '@/components/Guess/Guess';
+import GuessDisplay, { Guess } from '@/components/GuessDisplay/GuessDisplay';
 import TurnPhase, { PhaseType } from '@/components/TurnPhase/TurnPhase';
 import { Game, updateGame } from '@/remote/client';
 
