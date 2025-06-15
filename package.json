@@ -24,7 +24,7 @@
     "@mantinex/mantine-logo": "^2.0.0",
     "@next/bundle-analyzer": "^15.2.3",
     "@tabler/icons-react": "^3.31.0",
-    "next": "15.2.3",
+    "next": "^15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
