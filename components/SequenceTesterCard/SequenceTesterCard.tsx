@@ -5,21 +5,6 @@ import { Button, Table } from '@mantine/core';
 import { Game, getFoo } from '@/remote/client';
 
 export default function SequenceTesterCard({ yourName, game }: { yourName: string; game: Game }) {
-  const [myMessage, setMyMessage] = useState('');
-
-  const handleButtonClick = async () => {
-    const message = await getFoo();
-    alert(message);
-  };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const message = awaitGetFoo();
-      setMyMessage(message);
-    };
-    fetch();
-  }, []);
-
   return (
     <>
       <Table>
